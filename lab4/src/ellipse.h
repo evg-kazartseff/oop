@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 #include <cmath>
 #include "point.h"
-
+#include <iostream>
 class tEllipse : public tPoint
 {
     private:
@@ -13,6 +13,7 @@ class tEllipse : public tPoint
 
         float _R;
         float _Angle;
+        float _fi;
         float _tX;
         float _tY;
     public:
@@ -21,6 +22,7 @@ class tEllipse : public tPoint
         void setB(float B);
         void setAngle(float Angle);
         void setR();
+        void setfi(float fi = 0);
         void settX();
         void settY();
 
@@ -30,6 +32,11 @@ class tEllipse : public tPoint
         float getAngle();
         float gettX();
         float gettY();
+        float getfi();
+
+        float grTOrad(float Gr);
+        void rotate(float Gr);
+        void move();
 };
 
 

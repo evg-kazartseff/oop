@@ -18,7 +18,7 @@ void tEllipse::setB(float B)
 
 void tEllipse::setAngle(float Angle)
 {
-    this->_Angle = Angle;
+    this->_Angle = grTOrad(Angle);
 }
 
 void tEllipse::setR()
@@ -28,12 +28,12 @@ void tEllipse::setR()
 
 void tEllipse::settX()
 {
-    this->_tX = getX() + getR() * cos(getAngle());
+    this->_tX = getX() + (getR() * cos(getAngle() + getfi()));
 }
 
 void tEllipse::settY()
 {
-    this->_tY = getY() + getR() * sin(getAngle());
+    this->_tY = getY() + (getR() * sin(getAngle() + getfi()));
 }
 
 float tEllipse::getA()
@@ -64,4 +64,33 @@ float tEllipse::gettX()
 float tEllipse::gettY()
 {
     return this->_tY;
+}
+
+float tEllipse::grTOrad(float Gr)
+{
+    return Gr * M_PI / 180;
+}
+
+void tEllipse::move()
+{
+    this->setX(this->getX() + (this->getVecX() * 0.1));
+    this->setY(this->getY() + (this->getVecY() * 0.1));
+    settX();
+    settY();
+}
+
+void tEllipse::setfi(float fi)
+{
+    this->_fi = fi;
+}
+
+float tEllipse::getfi()
+{
+    return this->_fi;
+}
+
+void tEllipse::rotate(float Gr)
+{
+    float Rad = this->grTOrad(Gr);
+    setfi(Rad);
 }

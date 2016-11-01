@@ -9,7 +9,7 @@
 #include <cmath>
 #include <iostream>
 
-#define figure 5
+#define figure 6
 
 using namespace std;
 
@@ -21,6 +21,7 @@ enum fig
     triangle,
     circle,
     rhombus,
+    ellipse,
 };
 
 tPoint p = tPoint();
@@ -29,7 +30,7 @@ tRectangle r = tRectangle(100, 150);
 tTriangle t = tTriangle(50, 0, 50, 120, 50, 240);
 tCircle c = tCircle(200, 200, 100);
 tRhombus rh = tRhombus(150, 100);
-tEllipse e = tEllipse(80, 50);
+tEllipse e = tEllipse(100, 50);
 
 void Display()
 {
@@ -100,6 +101,25 @@ void Display()
         for (size_t i = 0; i < 360; i++) {
             glVertex2f(c.getTmpX(i), c.getTmpY(i));
             glVertex2f(c.getTmpX(i+1), c.getTmpY(i+1));
+        }
+
+        glEnd();
+    }
+    else if (figure == ellipse) {
+        glColor3f(1, 0, 0);
+        glBegin(GL_LINES);
+
+        for (size_t i = 0; i < 360; i++) {
+            e.setAngle(i);
+            e.setR();
+            e.settX();
+            e.settY();
+            glVertex2f(e.gettX(), e.gettY());
+            e.setAngle(i+1);
+            e.setR();
+            e.settX();
+            e.settY();
+            glVertex2f(e.gettX(), e.gettY());
         }
 
         glEnd();
@@ -180,6 +200,17 @@ void timer(int = 0)
             c.setVecY(-1 * c.getVecY());
         c.move();
         Display();
+    }
+    else if (figure == ellipse) {
+        for (size_t i = 0; i < 360; i++) {
+            if (e.getA() > e.getX() || e.getA() > (400 - e.getX()))
+            e.setVecX(-1 * e.getVecX());
+            if (e.getB() > e.getY() || e.getB() > (400 - e.getY()))
+            e.setVecY(-1 * e.getVecY());
+            //e.move();
+            e.rotate(i);
+            Display();
+        }
     }
     else if (figure == rhombus) {
         for (size_t i = 0; i < 360; i++) {
