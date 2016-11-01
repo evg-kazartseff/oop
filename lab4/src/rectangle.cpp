@@ -1,17 +1,19 @@
 #include "rectangle.h"
 
+tRectangle::tRectangle(){}
+
 tRectangle::tRectangle(float a, float b)
 {
     setR(a, b);
     setFi(a, b);
-    setXtl(this->getX(), 0);
-    setYtl(this->getY(), 0);
-    setXtr(this->getX(), 0);
-    setYtr(this->getY(), 0);
-    setXbl(this->getX(), 0);
-    setYbl(this->getY(), 0);
-    setXbr(this->getX(), 0);
-    setYbr(this->getY(), 0);
+    setXtl(this->getX());
+    setYtl(this->getY());
+    setXtr(this->getX());
+    setYtr(this->getY());
+    setXbl(this->getX());
+    setYbl(this->getY());
+    setXbr(this->getX());
+    setYbr(this->getY());
 }
 
 void tRectangle::setR(float a, float b)
@@ -118,6 +120,20 @@ float tRectangle::getYbr()
 float tRectangle::grTOrad(float Gr)
 {
     return Gr * M_PI / 180;
+}
+
+void tRectangle::move()
+{
+    this->setX(this->getX() + (this->getVecX() * 0.01));
+    this->setY(this->getY() + (this->getVecY() * 0.01));
+    setXtl(this->getX());
+    setYtl(this->getY());
+    setXtr(this->getX());
+    setYtr(this->getY());
+    setXbl(this->getX());
+    setYbl(this->getY());
+    setXbr(this->getX());
+    setYbr(this->getY());
 }
 
 void tRectangle::rotate(float Gr)

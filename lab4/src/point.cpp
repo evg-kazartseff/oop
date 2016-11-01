@@ -4,7 +4,9 @@ tPoint::tPoint()
 {
     setX(200);
     setY(200);
-    setSize(2);
+    setVecX(-100 + rand () % 100);
+    setVecY(-100 + rand () % 100);
+    setSize(3);
 }
 
 void tPoint::setX(float x)

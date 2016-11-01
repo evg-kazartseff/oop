@@ -1,13 +1,14 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
 
 #include <GL/glut.h>
 #include <cmath>
 #include "point.h"
 #include <iostream>
+
 class tRectangle : public tPoint
 {
-    private:
+    protected:
         float _Fi;
         float _R;
 
@@ -22,21 +23,23 @@ class tRectangle : public tPoint
 
         float _Xbr;
         float _Ybr;
+
     public:
 
+        tRectangle();
         tRectangle(float a, float b);
 
         void setR(float a, float b);
         void setFi(float a, float b);
 
-        void setXtl(float c, float fi);
-        void setYtl(float c, float fi);
-        void setXtr(float c, float fi);
-        void setYtr(float c, float fi);
-        void setXbl(float c, float fi);
-        void setYbl(float c, float fi);
-        void setXbr(float c, float fi);
-        void setYbr(float c, float fi);
+        virtual void setXtl(float c, float fi = 0);
+        virtual void setYtl(float c, float fi = 0);
+        virtual void setXtr(float c, float fi = 0);
+        virtual void setYtr(float c, float fi = 0);
+        virtual void setXbl(float c, float fi = 0);
+        virtual void setYbl(float c, float fi = 0);
+        virtual void setXbr(float c, float fi = 0);
+        virtual void setYbr(float c, float fi = 0);
 
         float getR();
         float getFi();
@@ -51,7 +54,8 @@ class tRectangle : public tPoint
         float getYbr();
 
         float grTOrad(float Gr);
-        void rotate(float Gr);
+        virtual void rotate(float Gr);
+        virtual void move();
 };
 
 #endif
